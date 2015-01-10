@@ -1,8 +1,6 @@
 
-defexception Koans.MeditateWarning, content: "" do
-    def message(warning) do
-        IO.ANSI.escape("%{magenta, bright}Please meditate: %{blue}#{warning.content}", true)
-    end
+defmodule Koans.MeditateWarning do
+    defexception message: "Please meditate"
 end
 
 defmodule Koans do
@@ -26,7 +24,7 @@ defmodule Koans do
     end
 
     def meditate(message) do
-        raise Koans.MeditateWarning, content: message
+        raise Koans.MeditateWarning, message: "Please meditate: #{message.content}"
     end
 
     defmacro think(message, var \\ quote(do: _), contents) do
